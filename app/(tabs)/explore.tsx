@@ -1,102 +1,171 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform } from 'react-native';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import MapView, { Geojson } from "react-native-maps";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const App = () => {
+  const geojsonData = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.4065809138474, 33.774599270809986],
+              [-84.4066249107589, 33.77456523524728],
+              [-84.40659325979252, 33.77453517930016],
+              [-84.40654774233657, 33.77456970033083],
+              [-84.4065809138474, 33.774599270809986],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40659184646604, 33.77453453036925],
+              [-84.40655312945579, 33.77449915276928],
+              [-84.40650906640995, 33.77453170271724],
+              [-84.40654854212643, 33.774569185228614],
+              [-84.40659184646604, 33.77453453036925],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40655247684647, 33.77449853311094],
+              [-84.40651707830433, 33.77446630435986],
+              [-84.40647025524129, 33.77450057221333],
+              [-84.40650759592926, 33.77453284236738],
+              [-84.40655247684647, 33.77449853311094],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40651666415094, 33.77446620966782],
+              [-84.40647845370174, 33.774432699608454],
+              [-84.40643426459708, 33.77446894798925],
+              [-84.40647004355155, 33.774501649530094],
+              [-84.40651666415094, 33.77446620966782],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40647925814378, 33.77443207890511],
+              [-84.4064416596662, 33.77440052623018],
+              [-84.4063985364269, 33.774436292852926],
+              [-84.40643500390229, 33.77446837907502],
+              [-84.40647925814378, 33.77443207890511],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.406671446204, 33.77453336036257],
+              [-84.40671706563313, 33.774500665838175],
+              [-84.40667925906016, 33.774469630630534],
+              [-84.40663373759584, 33.77450358615114],
+              [-84.406671446204, 33.77453336036257],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40668081696855, 33.774468681389024],
+              [-84.40664589478466, 33.77443956689909],
+              [-84.40659834026391, 33.77447147822451],
+              [-84.40663228831309, 33.774504462454715],
+              [-84.40668081696855, 33.774468681389024],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          coordinates: [
+            [
+              [-84.40664677681792, 33.77443959672435],
+              [-84.40660983497203, 33.77440774715123],
+              [-84.40656444282479, 33.77444079227419],
+              [-84.4066006236914, 33.77447289555609],
+              [-84.40664677681792, 33.77443959672435],
+            ],
+          ],
+          type: "Polygon",
+        },
+      },
+    ],
+  };
 
-export default function TabTwoScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText> library
-          to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 33.77454715,
+          longitude: -84.40658081,
+          latitudeDelta: 0.0002,
+          longitudeDelta: 0.0002,
+        }}
+      >
+        <Geojson
+          geojson={geojsonData}
+          strokeColor="#000"
+          fillColor="#ff000050" // Adding transparency
+          strokeWidth={2}
+        />
+      </MapView>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  map: {
+    flex: 1,
   },
 });
+
+export default App;
